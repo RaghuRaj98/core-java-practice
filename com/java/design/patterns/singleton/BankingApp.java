@@ -1,4 +1,4 @@
-package com.java.practice;
+package com.java.design.patterns.singleton;
 
 public class BankingApp {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package com.java.practice;
+package com.java.design.patterns.singleton;
 
 // Singleton Logger Class
 public class BankLogger {
