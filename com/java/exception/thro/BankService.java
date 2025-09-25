@@ -31,9 +31,8 @@ public class BankService {
         System.out.println("Transaction successful for account: " + accountNumber);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InsufficientFundsException {
         BankService bank = new BankService();
-
         try {
             // First will fail due to invalid account
             bank.processTransaction("", 3000);

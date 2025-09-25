@@ -3,6 +3,7 @@ package com.java.javastreams;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 class Address {
     private final String city;
@@ -104,6 +105,22 @@ public class StreamFilterDeepDive {
             .filter(e -> e.getSalary() > 60000)
             .forEach(System.out::println);
 
+        System.out.println("\n=== My attempt) Simple string sort ===");
+        String[] names = {"Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Heidi", "Ivan","1"};
+
+        Stream.of(names).sorted().forEach(System.out::println);
+
+        System.out.println("\n=== 3) Sort employees by name ===");
+        employees.stream()
+                .sorted(Comparator.comparing(Employee::getId).reversed())
+                .forEach(System.out::println);
+
+        System.out.println("\n=== 6) Multi-level sort: dept -> salary desc -> name ===");
+        employees.stream()
+                .sorted(Comparator.comparing(Employee::getDept, Comparator.comparing(Department::getName))
+                        .thenComparing(Comparator.comparingDouble(Employee::getSalary).reversed())
+                        .thenComparing(Employee::getName))
+                .forEach(System.out::println);
         System.out.println("\n=== 2) Nested-property filter: dept name is IT ===");
         // Theory: filter uses nested object property; beware NPE if dept could be null
         employees.stream()
@@ -195,5 +212,15 @@ public class StreamFilterDeepDive {
             .filter(e -> e.getRoles().stream().anyMatch(r -> "Developer".equals(r.getName())))
             .filter(e -> e.getSalary() > 60000)
             .forEach(System.out::println);
+
+        employees.sort(
+                Comparator.comparing(Employee::getDept, Comparator.nullsLast(Comparator.comparing(Department::getName)))
+                        .thenComparing(Comparator.comparingDouble(Employee::getSalary).reversed())
+                        .thenComparing(Employee::getName)
+        );
+
+
+        employees.sort(Comparator.comparing(Employee::getId).reversed());
+
     }
 }

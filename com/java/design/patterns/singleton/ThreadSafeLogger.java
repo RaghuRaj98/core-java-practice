@@ -6,9 +6,13 @@ public class ThreadSafeLogger {
 
     private ThreadSafeLogger() {}
 
-    public static synchronized ThreadSafeLogger getInstance() {
+    public static  ThreadSafeLogger getInstance() {
         if (instance == null) {
-            instance = new ThreadSafeLogger();
+            synchronized (ThreadSafeLogger.class) {
+               {
+                    instance = new ThreadSafeLogger();
+                }
+            }
         }
         return instance;
     }
