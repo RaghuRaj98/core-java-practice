@@ -16,5 +16,9 @@ public class Main {
             System.out.println("Showing time from lamda = " + LocalTime.now());
         };
         time.show();
+
+        //from concrete class
+        ShowTimeImplementation showTimeImplementation = new ShowTimeImplementation();
+        showTimeImplementation.show();
     }
 }
