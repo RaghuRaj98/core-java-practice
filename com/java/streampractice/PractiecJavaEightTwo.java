@@ -190,7 +190,7 @@ public class PractiecJavaEightTwo {
         //Grouping and Aggregation: Group employees by department and calculate average salary per department.
 
         //Group employees by department.
-        Map<String, List<Employee>> empByDept =employees.stream().collect(Collectors.groupingBy(Employee::getDepartment));
+        Map<String, List<Employee>> empByDept =employees.stream().collect(Collectors.groupingBy(Employee::getDepartment,Collectors.toList()));
 
         for(Map.Entry<String, List<Employee>> emp:empByDept.entrySet()){
             String dept = emp.getKey();
@@ -198,6 +198,7 @@ public class PractiecJavaEightTwo {
             System.out.println("Department: " + dept);
             empList.stream().forEach(e-> System.out.println("\t" + e));
         }
+
 
         employees.stream().collect(Collectors.groupingBy(Employee::getDepartment))
                 .forEach((dept, empList) -> {

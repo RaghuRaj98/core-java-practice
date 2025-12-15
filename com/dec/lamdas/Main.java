@@ -12,13 +12,19 @@ public class Main {
         };
         showTime.show();
 
-        ShowTime time = () -> {
-            System.out.println("Showing time from lamda = " + LocalTime.now());
-        };
+        ShowTime time = () -> System.out.println("Showing time from lamda = " + LocalTime.now());
+
         time.show();
 
         //from concrete class
         ShowTimeImplementation showTimeImplementation = new ShowTimeImplementation();
         showTimeImplementation.show();
+
+        ShowTime timeAnonympus = new ShowTime(){
+            @Override
+            public void show() {
+                System.out.println("Showing time from another anonymous class = " + LocalTime.now());
+            }
+        };
     }
 }
